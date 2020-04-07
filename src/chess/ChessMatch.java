@@ -1,9 +1,11 @@
 package chess;
 
-import board.*;
-import chess.piece.Rook;
+
+import board.Position;
+import board.Board;
+import board.Piece;
 import chess.piece.King;
-import chess.*;
+import chess.piece.Rook;
 
 public class ChessMatch {
 
@@ -18,13 +20,42 @@ public class ChessMatch {
 		return board.getPieces();
 	}
 	
+	public Piece chessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
+		Position source = sourcePosition.toPosition();
+		Position target = targetPosition.toPosition();
+		if (!board.positionExists(source)) {
+			throw new ChessException("Error in the source position: This position are invalid");
+		}
+		if (!board.haveAPiece(source)) {
+			throw new ChessException("Error in the source position: There is no piece in the original position");
+		}
+		return makeMove(source, target);
+	}
+	
+	private Piece makeMove(Position source, Position target) {
+		Piece p = board.removePiece(source);
+		Piece capturedPiece = board.removePiece(target);
+		board.placePiece(p, target);
+		return capturedPiece;
+	}
+	
 	private void placeNewPiece(char col, int row, Piece piece) {
 		board.placePiece(piece, new ChessPosition(row, col).toPosition());
 	}
 	
 	private void initialSetup() {
-		placeNewPiece('b', 6, new Rook(board, Color.WHITE));
-		placeNewPiece('e', 8, new King(board, Color.BLACK));
-		placeNewPiece('e', 1, new King(board, Color.WHITE));
+		placeNewPiece('c', 1, new Rook(board, Color.WHITE));
+        placeNewPiece('c', 2, new Rook(board, Color.WHITE));
+        placeNewPiece('d', 2, new Rook(board, Color.WHITE));
+        placeNewPiece('e', 2, new Rook(board, Color.WHITE));
+        placeNewPiece('e', 1, new Rook(board, Color.WHITE));
+        placeNewPiece('d', 1, new King(board, Color.WHITE));
+
+        placeNewPiece('c', 7, new Rook(board, Color.BLACK));
+        placeNewPiece('c', 8, new Rook(board, Color.BLACK));
+        placeNewPiece('d', 7, new Rook(board, Color.BLACK));
+        placeNewPiece('e', 7, new Rook(board, Color.BLACK));
+        placeNewPiece('e', 8, new Rook(board, Color.BLACK));
+        placeNewPiece('d', 8, new King(board, Color.BLACK));
 	}
 }
