@@ -29,6 +29,13 @@ public class ChessMatch {
 		if (!board.haveAPiece(source)) {
 			throw new ChessException("Error in the source position: There is no piece in the original position");
 		}
+		if (!board.getPiece(source).havePossibleMove()) {
+			throw new ChessException("Error in the source position: There is no possible moves for the piece");
+		}
+		if (!board.getPiece(source).possibleMove(target)) {
+			throw new ChessException("Error in the source position: This move is invalid");
+		}
+		
 		return makeMove(source, target);
 	}
 	

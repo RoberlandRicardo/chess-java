@@ -15,4 +15,10 @@ public class King extends Piece{
 	public String toString() {
 		return "K";
 	}
+	
+	@Override
+	public boolean[][] possibleMoves(){
+		boolean[][] aux = new boolean[super.getBoard().getRows()][super.getBoard().getCols()];
+		return aux;
+	}
 }

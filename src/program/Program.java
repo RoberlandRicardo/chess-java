@@ -17,7 +17,7 @@ public class Program {
 		
 		while (true) {
 			try {
-				Interface.clearScreen();
+				//Interface.clearScreen();
 				Interface.printBoard(match.getPieces());
 				System.out.println();
 				System.out.print("Source: ");
