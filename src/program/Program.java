@@ -17,11 +17,15 @@ public class Program {
 		
 		while (true) {
 			try {
-				//Interface.clearScreen();
+				Interface.clearScreen();
 				Interface.printBoard(match.getPieces());
 				System.out.println();
 				System.out.print("Source: ");
 				ChessPosition source = Interface.readChessPosition(sc);
+				
+				boolean[][] possibleMoves = match.possibleMoves(source);
+				Interface.clearScreen();
+				Interface.printBoard(match.getPieces(), possibleMoves);
 				
 				System.out.println();
 				System.out.print("Target: ");

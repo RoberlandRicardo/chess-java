@@ -20,9 +20,8 @@ public class ChessMatch {
 		return board.getPieces();
 	}
 	
-	public Piece chessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
+	public boolean[][] possibleMoves(ChessPosition sourcePosition){
 		Position source = sourcePosition.toPosition();
-		Position target = targetPosition.toPosition();
 		if (!board.positionExists(source)) {
 			throw new ChessException("Error in the source position: This position are invalid");
 		}
@@ -32,8 +31,15 @@ public class ChessMatch {
 		if (!board.getPiece(source).havePossibleMove()) {
 			throw new ChessException("Error in the source position: There is no possible moves for the piece");
 		}
+		return board.getPiece(source).possibleMoves();
+	}
+	
+	public Piece chessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
+		Position source = sourcePosition.toPosition();
+		Position target = targetPosition.toPosition();
+
 		if (!board.getPiece(source).possibleMove(target)) {
-			throw new ChessException("Error in the source position: This move is invalid");
+			throw new ChessException("Error in the target position: This move is invalid");
 		}
 		
 		return makeMove(source, target);
@@ -56,7 +62,7 @@ public class ChessMatch {
         placeNewPiece('d', 2, new Rook(board, Color.WHITE));
         placeNewPiece('e', 2, new Rook(board, Color.WHITE));
         placeNewPiece('e', 1, new Rook(board, Color.WHITE));
-        placeNewPiece('d', 1, new King(board, Color.WHITE));
+        placeNewPiece('d', 5, new King(board, Color.WHITE));
 
         placeNewPiece('c', 7, new Rook(board, Color.BLACK));
         placeNewPiece('c', 8, new Rook(board, Color.BLACK));
