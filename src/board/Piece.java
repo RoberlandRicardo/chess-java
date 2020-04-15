@@ -1,5 +1,6 @@
 package board;
 
+import chess.ChessPosition;
 import chess.Color;
 
 public abstract class Piece {
@@ -19,6 +20,10 @@ public abstract class Piece {
 	
 	public Color getColor() {
 		return color;
+	}
+	
+	public ChessPosition getChessPosition() {
+		return ChessPosition.fromPosition(position);
 	}
 	
 	public abstract boolean[][] possibleMoves();

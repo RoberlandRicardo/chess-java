@@ -33,8 +33,8 @@ public class ChessPosition {
 		return new Position(8 - row, col - 'a');
 	}
 	
-	protected ChessPosition fromPosition(Position position) {
-		return new ChessPosition (8 - position.getRow(), (char) ('a' - position.getColumn()));
+	public static ChessPosition fromPosition(Position position) {
+		return new ChessPosition (8 - position.getRow(), (char) ('a' + position.getColumn()));
 	}
 	
 	@Override
