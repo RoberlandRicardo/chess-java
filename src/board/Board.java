@@ -65,8 +65,8 @@ public class Board {
 	}
 	
 	public boolean positionExists(Position position) {
-		return position.getRow() >= 0 && position.getRow() <= rows 
-				&& position.getColumn() >= 0 && position.getColumn() <= cols;
+		return position.getRow() >= 0 && position.getRow() < rows 
+				&& position.getColumn() >= 0 && position.getColumn() < cols;
 	}
 	
 	public boolean haveAPiece(Position position) {

@@ -7,6 +7,7 @@ public abstract class Piece {
 	protected Position position;
 	private Board board;
 	private Color color;
+	private int moveCount;
 	
 	public Piece(Board board, Color color) {
 		this.board = board;
@@ -20,6 +21,18 @@ public abstract class Piece {
 	
 	public Color getColor() {
 		return color;
+	}
+	
+	public int getMoveCount() {
+		return moveCount;
+	}
+	
+	public void increaseMoveCount() {
+		this.moveCount++;
+	}
+	
+	public void decreaseMoveCount() {
+		this.moveCount--;
 	}
 	
 	public ChessPosition getChessPosition() {
